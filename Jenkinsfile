@@ -11,7 +11,7 @@ pipeline {
         stage('Testy') {
             steps {
                 echo 'Uruchomienie testów'
-                sh 'python test_app.py'
+                sh 'python3 test_app.py'
             }
         }
         stage('Build') {

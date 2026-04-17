@@ -21,14 +21,16 @@ pipeline {
             }
         }
         stage('Deploy') {
-            echo 'Deploy aplikacji na serwer'
-            echo 'Usuwanie starego kontenera'
-            sh 'docker container stop flask_app'
+            steps {
+                echo 'Deploy aplikacji na serwer'
 
-            echo 'Uruchomienie kontenera'
-            sh 'docker run -p 5000:5000 -d -n flask_app'
+                echo 'Usuwanie starego kontenera'
+                sh 'docker container stop flask_app'
+
+                echo 'Uruchomienie kontenera'
+                sh 'docker run -p 5000:5000 -d -n flask_app'
+            }
         }
-
     }
 
     post {

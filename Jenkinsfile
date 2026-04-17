@@ -11,7 +11,7 @@ pipeline {
         stage('Testy') {
             steps {
                 echo 'Uruchomienie testów'
-                sh 'docker run python test_app.py'
+                sh 'docker run python python test_app.py'
             }
         }
         stage('Build') {

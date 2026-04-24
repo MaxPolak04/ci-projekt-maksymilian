@@ -30,7 +30,7 @@ pipeline {
                 echo 'Deploy aplikacji na serwer'
 
                 echo 'Usuwanie starego kontenera'
-                sh 'docker container stop flask_app || true'
+                sh 'docker container rm -f flask_app || true'
 
                 echo 'Uruchomienie kontenera'
                 sh 'docker run -p 5000:5000 -d --name=flask_app flask_app_image'

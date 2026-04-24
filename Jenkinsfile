@@ -34,7 +34,7 @@ pipeline {
 
                 echo 'Uruchomienie kontenera'
                 sh 'docker run -p 5000:5000 -d --name=flask_app flask_app_image'
-            }
+            } // komentarz
         }
     }
 

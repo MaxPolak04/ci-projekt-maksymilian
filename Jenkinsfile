@@ -5,10 +5,15 @@ pipeline {
         stage('Info') {
             steps {
                 echo 'Numer builda: ${env.BUILD_NUMBER}'
-                echo 'Numer builda: ${env.GIT_BRANCH}'
+                echo 'Gałąź: ${env.GIT_BRANCH}'
             }
         }
         stage('Testy') {
+            when {
+                expression {
+                    env.GIT_BRANCH != 'origin/main'
+                }
+            }
             steps {
                 echo 'Uruchomienie testów'
                 sh 'python3 test_app.py'

@@ -7,7 +7,7 @@ pipeline {
     }
 
     options {
-        timeout(time: 15, unit: 'MINUTES')
+        timeout(time: 20, unit: 'MINUTES')
     }
 
     parameters {
@@ -21,7 +21,11 @@ pipeline {
     stages {
         stage('Info') {
             steps {
+                echo 'Aplikacja: ${env.APLIKACJA}'
+                echo 'Wersja: ${env.WERSJA}'
                 echo 'Numer builda: ${env.BUILD_NUMBER}'
+                echo 'Zadanie: ${env.JOB_NAME}'
+                echo 'Workspace: ${env.WORKSPACE}'
                 echo 'Gałąź: ${env.GIT_BRANCH}'
             }
         }
@@ -39,7 +43,21 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Budowanie obrazu'
-                sh 'docker image build -t flask_app_image -f Dockerfile .'
+                sh 'docker image build -t flask_app_${env.BUILD_NUMBER} -f Dockerfile .'
+            }
+        }
+        stage('Analiza jakości') {
+            steps {
+                echo 'sprawdzanie plików'
+                echo 'skanowanie obrazu'
+            }
+        }
+        stage('Wdrożenie DEV') {
+            when {
+                expression { params.SRODOWISKO == 'dev' }
+            }
+            steps {
+                echo 'Wdrozenie na DEV'
             }
         }
         stage('Zatwierdzenie') {
@@ -57,6 +75,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy aplikacji na serwer, SRODOWISKO: ${params.SRODOWISKO}'
+
 
                 echo 'Usuwanie starego kontenera'
                 sh 'docker container rm -f flask_app || true'
@@ -76,6 +95,7 @@ pipeline {
         success {
             echo '...i przeszedł pomyślnie! Yeeeeeyy!'
             echo 'SRODOWISKO: ${params.SRODOWISKO}'
+            echo 'BUILD_NUMBER: ${env.BUILD_NUMBER}'
         }
         failure {
             echo '...i coś się spiepszyło :c Patrz w logi.'

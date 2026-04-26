@@ -78,10 +78,10 @@ pipeline {
 
 
                 echo "Usuwanie starego kontenera"
-                sh "docker container rm -f flask_app || true"
+                sh "docker container rm -f flask_app_${env.BUILD_NUMBER} || true"
 
                 echo "Uruchomienie kontenera"
-                sh "docker run -p 5000:5000 -d --name=flask_app flask_app_image"
+                sh "docker run -p 5000:5000 -d --name=flask_app flask_app_${env.BUILD_NUMBER}"
 
                 echo "Wdrozenie zakonczone"
             }

@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APLIKACJA = 'FlaskApp',
+        APLIKACJA = 'FlaskApp'
         WERSJA = '1.0.0'
     }
 
@@ -11,11 +11,11 @@ pipeline {
     }
 
     parameters {
-        choice {
+        choice (
             name: 'SRODOWISKO',
             choices: ['dev', 'staging', 'prod'],
             description: 'Wybierz srodowisko docelowe'
-        }
+        )
     }
 
     stages {

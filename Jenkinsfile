@@ -24,7 +24,7 @@ pipeline {
                 echo 'Budowanie obrazu'
                 sh 'docker image build -t flask_app_image -f Dockerfile .'
             }
-        } // test2
+        } // test3
         stage('Deploy') {
             steps {
                 echo 'Deploy aplikacji na serwer'

@@ -19,7 +19,7 @@ pipeline {
                 sh 'python3 test_app.py'
             }
         }
-        stage('Build') {
+        stage('Build') { //
             steps {
                 echo 'Budowanie obrazu'
                 sh 'docker image build -t flask_app_image -f Dockerfile .'

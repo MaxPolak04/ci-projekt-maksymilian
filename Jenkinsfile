@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APLIKACJA = 'FlaskApp'
+        APLIKACJA = 'FlaskApp',
         WERSJA = '1.0.0'
     }
 

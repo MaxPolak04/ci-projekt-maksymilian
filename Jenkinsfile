@@ -24,13 +24,8 @@ pipeline {
                 echo 'Budowanie obrazu'
                 sh 'docker image build -t flask_app_image -f Dockerfile .'
             }
-<<<<<<< HEAD
         } // test3
         stage('Deploy') {
-=======
-        } // test3
-        stage('Deploy') {
->>>>>>> feature/update-Jenkinsfile
             steps {
                 echo 'Deploy aplikacji na serwer'
 

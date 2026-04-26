@@ -78,7 +78,7 @@ pipeline {
 
 
                 echo "Usuwanie starego kontenera"
-                sh "docker container rm -f flask_app_${env.BUILD_NUMBER} || true"
+                sh "docker container rm -f flask_app || true"
 
                 echo "Uruchomienie kontenera"
                 sh "docker run -p 5000:5000 -d --name=flask_app flask_app_${env.BUILD_NUMBER}"

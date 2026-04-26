@@ -11,7 +11,7 @@ pipeline {
     }
 
     parameters {
-        choice (
+        choice (//
             name: 'SRODOWISKO',
             choices: ['dev', 'staging', 'prod'],
             description: 'Wybierz srodowisko docelowe'
